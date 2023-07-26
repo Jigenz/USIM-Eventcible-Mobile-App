@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">748494867884-0mjsfd7kjlnno0um80odfrqt5ehv32k4.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">748494867884</string>
+    <string name="google_api_key" translatable="false">AIzaSyCZG_WZz39qG8V7xtnivVC9Sw0BiiNAyQ0</string>
+    <string name="google_app_id" translatable="false">1:748494867884:android:4d0856d787f6e4586dbe09</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCZG_WZz39qG8V7xtnivVC9Sw0BiiNAyQ0</string>
+    <string name="google_storage_bucket" translatable="false">campus-pulse.appspot.com</string>
+    <string name="project_id" translatable="false">campus-pulse</string>
+</resources>

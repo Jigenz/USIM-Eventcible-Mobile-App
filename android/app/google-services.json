@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "748494867884",
+    "project_id": "campus-pulse",
+    "storage_bucket": "campus-pulse.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748494867884:android:4d0856d787f6e4586dbe09",
+        "android_client_info": {
+          "package_name": "com.example.flutter_complete_guide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "748494867884-0mjsfd7kjlnno0um80odfrqt5ehv32k4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZG_WZz39qG8V7xtnivVC9Sw0BiiNAyQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "748494867884-0mjsfd7kjlnno0um80odfrqt5ehv32k4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

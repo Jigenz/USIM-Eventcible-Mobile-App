@@ -1,0 +1,37 @@
+{
+    "0" : {
+        "Image" : "https://media.licdn.com/dms/image/C4D0BAQFZqgd6_hgevg/company-logo_100_100/0/1663741894089?e=1683763200&v=beta&t=929wUotXbFJD3pyfVyT2fx0gQECBXv-YZ5NleXRmqCk",
+        "Name" : "APP DEV CLUB",
+        "Description" : "This club helps students to learn about app development and to develop their own apps."
+    },
+    "1" : {
+        "Image" : "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2,f_auto,g_center,q_auto:good/v1/gcs/platform-data-dsc/contentbuilder/GDG-Bevy-ChapterThumbnail.png",
+        "Name" : "GDSC",
+        "Description" : "Google Developer Student Clubs is a global program that empowers university students to learn mobile and web development skills through peer-to-peer learning and community building."
+    },
+    "2" : {
+        "Image" : "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2,f_auto,g_center,q_auto:good/v1/gcs/platform-data-dsc/contentbuilder/GDG-Bevy-ChapterThumbnail.png",
+        "Name" : "Test3",
+        "Description" : "Test3"
+    },
+    "3" : {
+        "Image" : "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2,f_auto,g_center,q_auto:good/v1/gcs/platform-data-dsc/contentbuilder/GDG-Bevy-ChapterThumbnail.png",
+        "Name" : "Test4",
+        "Description" : "Test4"
+    },
+    "4" : {
+        "Image" : "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2,f_auto,g_center,q_auto:good/v1/gcs/platform-data-dsc/contentbuilder/GDG-Bevy-ChapterThumbnail.png",
+        "Name" : "Test5",
+        "Description" : "Test5"
+    },
+    "5" : {
+        "Image" : "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2,f_auto,g_center,q_auto:good/v1/gcs/platform-data-dsc/contentbuilder/GDG-Bevy-ChapterThumbnail.png",
+        "Name" : "Test6",
+        "Description" : "Test6"
+    },
+    "6" : {
+        "Image" : "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2,f_auto,g_center,q_auto:good/v1/gcs/platform-data-dsc/contentbuilder/GDG-Bevy-ChapterThumbnail.png",
+        "Name" : "Test7",
+        "Description" : "Test7"
+    }
+}
