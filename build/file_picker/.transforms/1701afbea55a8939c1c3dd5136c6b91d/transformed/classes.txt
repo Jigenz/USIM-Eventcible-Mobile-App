@@ -1,0 +1,16 @@
+com/mr/flutter/plugin/filepicker/FileInfo$Builder.class
+com/mr/flutter/plugin/filepicker/FileInfo.class
+com/mr/flutter/plugin/filepicker/FilePickerDelegate$1.class
+com/mr/flutter/plugin/filepicker/FilePickerDelegate$2.class
+com/mr/flutter/plugin/filepicker/FilePickerDelegate$3.class
+com/mr/flutter/plugin/filepicker/FilePickerDelegate$PermissionManager.class
+com/mr/flutter/plugin/filepicker/FilePickerDelegate.class
+com/mr/flutter/plugin/filepicker/FilePickerPlugin$1.class
+com/mr/flutter/plugin/filepicker/FilePickerPlugin$LifeCycleObserver.class
+com/mr/flutter/plugin/filepicker/FilePickerPlugin$MethodResultWrapper$1.class
+com/mr/flutter/plugin/filepicker/FilePickerPlugin$MethodResultWrapper$2.class
+com/mr/flutter/plugin/filepicker/FilePickerPlugin$MethodResultWrapper$3.class
+com/mr/flutter/plugin/filepicker/FilePickerPlugin$MethodResultWrapper.class
+com/mr/flutter/plugin/filepicker/FilePickerPlugin.class
+com/mr/flutter/plugin/filepicker/FileUtils.class
+com/mr/flutter/plugin/filepicker/R.class

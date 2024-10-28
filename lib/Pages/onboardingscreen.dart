@@ -83,7 +83,7 @@ class OnboardingPage extends StatelessWidget {
           return onboarding(data: data[index]);
         },
         onFinish: () {
-          Navigator.of(context).pushReplacementNamed("/auth");
+          Navigator.of(context).pushReplacementNamed("/selection");
         },
       ),
     );

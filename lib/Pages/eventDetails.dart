@@ -194,7 +194,7 @@ class _eventDetailState extends State<eventDetail> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 24),
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF613FE5),
+                      backgroundColor: Color(0xFF613FE5),
                       elevation: 2,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),

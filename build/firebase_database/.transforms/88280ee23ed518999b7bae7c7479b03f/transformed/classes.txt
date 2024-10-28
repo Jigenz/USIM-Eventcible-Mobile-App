@@ -1,0 +1,16 @@
+io/flutter/plugins/firebase/database/BuildConfig.class
+io/flutter/plugins/firebase/database/ChildEventsProxy.class
+io/flutter/plugins/firebase/database/Constants.class
+io/flutter/plugins/firebase/database/EventStreamHandler.class
+io/flutter/plugins/firebase/database/EventsProxy.class
+io/flutter/plugins/firebase/database/FirebaseDatabasePlugin.class
+io/flutter/plugins/firebase/database/FlutterDataSnapshotPayload.class
+io/flutter/plugins/firebase/database/FlutterFirebaseAppRegistrar.class
+io/flutter/plugins/firebase/database/FlutterFirebaseDatabaseException.class
+io/flutter/plugins/firebase/database/OnDispose.class
+io/flutter/plugins/firebase/database/QueryBuilder.class
+io/flutter/plugins/firebase/database/R.class
+io/flutter/plugins/firebase/database/TransactionExecutor$1.class
+io/flutter/plugins/firebase/database/TransactionExecutor.class
+io/flutter/plugins/firebase/database/TransactionHandler.class
+io/flutter/plugins/firebase/database/ValueEventsProxy.class

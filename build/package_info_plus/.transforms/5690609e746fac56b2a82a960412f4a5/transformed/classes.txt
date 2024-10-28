@@ -1,0 +1,3 @@
+dev/fluttercommunity/plus/packageinfo/PackageInfoPlugin$Companion.class
+dev/fluttercommunity/plus/packageinfo/PackageInfoPlugin.class
+dev/fluttercommunity/plus/packageinfo/R.class

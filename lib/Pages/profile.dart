@@ -1,26 +1,28 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/Pages/authentication.dart';
+import 'package:flutter_complete_guide/Pages/selectionpage.dart';
 import 'package:flutter_complete_guide/services/firebase_services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class profilePage extends StatefulWidget {
   @override
-  _profilePageState createState() => _profilePageState();
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _profilePageState extends State<profilePage> {
+class _ProfilePageState extends State<profilePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   String? username;
+  String? profileImageUrl;
 
   @override
   void initState() {
     super.initState();
-    fetchUsername();
+    fetchUserProfile();
   }
 
-  Future<void> fetchUsername() async {
+  Future<void> fetchUserProfile() async {
     final userDoc = FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid);
@@ -30,6 +32,7 @@ class _profilePageState extends State<profilePage> {
 
     setState(() {
       username = userData?['username'];
+      profileImageUrl = userData?['profileImageUrl'];
     });
   }
 
@@ -38,7 +41,6 @@ class _profilePageState extends State<profilePage> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFFF6F6F7),
-
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -55,64 +57,51 @@ class _profilePageState extends State<profilePage> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Stack(
-                              children: [
-                                Center(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 35, 0, 0),
-                                    child: CircleAvatar(
-                                      radius: 70,
-                                      backgroundImage: NetworkImage(
-                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/1024px-Windows_10_Default_Profile_Picture.svg.png'
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 35, 0, 0),
+                        child: CircleAvatar(
+                          radius: 70,
+                          backgroundImage: profileImageUrl != null
+                              ? NetworkImage(profileImageUrl!)
+                              : AssetImage('assets/images/default_profile.png')
+                                  as ImageProvider,
+                        ),
                       ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Text(
-                              username ?? '',
-                              style: TextStyle(
-                                fontFamily: 'Lexend Deca',
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                        child: Text(
+                          'Welcome to USIM EVENTCIBLE!',
+                          style: TextStyle(
+                            fontFamily: 'Lexend Deca',
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
                           ),
-                        ],
+                        ),
                       ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                            child: Text(
-                              '${FirebaseAuth.instance.currentUser!.email}',
-                              style: TextStyle(
-                                fontFamily: 'Lexend Deca',
-                                color: Color(0xFFF6F6F7),
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                        child: Text(
+                          username ?? '',
+                          style: TextStyle(
+                            fontFamily: 'Lexend Deca',
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                           ),
-                        ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                        child: Text(
+                          '${FirebaseAuth.instance.currentUser!.email}',
+                          style: TextStyle(
+                            fontFamily: 'Lexend Deca',
+                            color: Color(0xFFF6F6F7),
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -220,8 +209,7 @@ class _profilePageState extends State<profilePage> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                 child: FaIcon(
                                   FontAwesomeIcons.userCheck,
                                   color: Color(0xFF613FE5),
@@ -229,8 +217,7 @@ class _profilePageState extends State<profilePage> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                 child: Text(
                                   'My Notifications',
                                   style: TextStyle(
@@ -278,8 +265,7 @@ class _profilePageState extends State<profilePage> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                               child: Icon(
                                 Icons.text_snippet,
                                 color: Color(0xFF613FE5),
@@ -287,8 +273,7 @@ class _profilePageState extends State<profilePage> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                               child: Text(
                                 'Terms of Service',
                                 style: TextStyle(
@@ -336,7 +321,7 @@ class _profilePageState extends State<profilePage> {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AuthenticationPage(),
+                            builder: (context) => SelectionPage(),
                           ),
                           (r) => false,
                         );
@@ -352,7 +337,7 @@ class _profilePageState extends State<profilePage> {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xFF613FE5),
+                        backgroundColor: Color(0xFF613FE5),
                         elevation: 2,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),

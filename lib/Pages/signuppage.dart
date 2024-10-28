@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
+  final String role; // Add the role as a parameter to the SignUpPage class
+
+  SignUpPage({Key? key, required this.role}) : super(key: key); // Initialize the role
+
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _fullNameController = TextEditingController();
-  final TextEditingController _usimIdController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _facultyController = TextEditingController();
-  final TextEditingController _courseController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+  String? _selectedGender;
+  String? _selectedCountryCode;
+  DateTime? _selectedDateOfBirth;
+  File? _profileImage;
+  bool _passwordVisibility = false;
 
   Future<void> signUp(BuildContext context) async {
     try {
@@ -21,24 +37,45 @@ class SignUpPage extends StatelessWidget {
 
       // Retrieve the values from the controllers and use them to create a document for the user
       final fullName = _fullNameController.text;
-      final usimId = _usimIdController.text;
+      final username = _usernameController.text;
       final email = _emailController.text;
-      final faculty = _facultyController.text;
-      final course = _courseController.text;
+      final gender = _selectedGender;
+      final phoneNumber = _selectedCountryCode! + _phoneNumberController.text;
+      final dob = _selectedDateOfBirth;
+      String? profileImageUrl;
 
-      // Create a document for the user in the "users" collection
-      final docUser =
-          FirebaseFirestore.instance.collection('users')
+      if (_profileImage != null) {
+        // Upload the profile picture to Firebase Storage
+        final storageRef = FirebaseStorage.instance
+            .ref()
+            .child('profile_pictures')
+            .child(userCredential.user!.uid + '.jpg');
+        await storageRef.putFile(_profileImage!);
+        profileImageUrl = await storageRef.getDownloadURL();
+      }
+
+      // Determine the Firestore collection based on the role
+      String collection;
+      if (widget.role == 'Campus Association') {
+        collection = 'campus_associations';
+      } else if (widget.role == 'Student') {
+        collection = 'students';
+      } else {
+        collection = 'other';
+      }
+
+      // Create a document for the user in the appropriate collection
+      final docUser = FirebaseFirestore.instance
+          .collection(collection)
           .doc(userCredential.user!.uid);
       await docUser.set({
         'fullName': fullName,
-        'usimId': usimId,
+        'username': username,
         'email': email,
-        'faculty': faculty,
-        'course': course,
-        'username': _emailController.text.split('@')[0],
-        
-        
+        'gender': gender,
+        'phoneNumber': phoneNumber,
+        'dob': dob,
+        'profileImageUrl': profileImageUrl,
       });
 
       // Navigate to the home screen or perform any other actions
@@ -58,10 +95,28 @@ class SignUpPage extends StatelessWidget {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    if (pickedDate != null && pickedDate != _selectedDateOfBirth) {
+      setState(() {
+        _selectedDateOfBirth = pickedDate;
+      });
+    }
+  }
 
-
-
-  
+  Future<void> _pickImage() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +132,22 @@ class SignUpPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              GestureDetector(
+                onTap: _pickImage,
+                child: CircleAvatar(
+                  radius: 50,
+                  backgroundImage:
+                      _profileImage != null ? FileImage(_profileImage!) : null,
+                  child: _profileImage == null
+                      ? Icon(
+                          Icons.add_a_photo,
+                          size: 50,
+                          color: Colors.grey,
+                        )
+                      : null,
+                ),
+              ),
+              SizedBox(height: 12),
               TextFormField(
                 controller: _fullNameController,
                 decoration: InputDecoration(
@@ -88,9 +159,9 @@ class SignUpPage extends StatelessWidget {
               ),
               SizedBox(height: 12),
               TextFormField(
-                controller: _usimIdController,
+                controller: _usernameController,
                 decoration: InputDecoration(
-                  labelText: 'USIM ID',
+                  labelText: 'Username',
                   border: OutlineInputBorder(),
                   fillColor: Colors.white,
                   filled: true,
@@ -114,34 +185,106 @@ class SignUpPage extends StatelessWidget {
                   border: OutlineInputBorder(),
                   fillColor: Colors.white,
                   filled: true,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      // Toggle password visibility
+                      setState(() {
+                        _passwordVisibility = !_passwordVisibility;
+                      });
+                    },
+                    icon: Icon(
+                      _passwordVisibility
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                  ),
                 ),
-                obscureText: true,
+                obscureText: !_passwordVisibility,
               ),
               SizedBox(height: 12),
-              TextFormField(
-                controller: _facultyController,
+              DropdownButtonFormField<String>(
+                value: _selectedGender,
                 decoration: InputDecoration(
-                  labelText: 'Faculty',
+                  labelText: 'Gender',
                   border: OutlineInputBorder(),
                   fillColor: Colors.white,
                   filled: true,
                 ),
+                items: ['Male', 'Female']
+                    .map((gender) => DropdownMenuItem(
+                          child: Text(gender),
+                          value: gender,
+                        ))
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedGender = value;
+                  });
+                },
               ),
               SizedBox(height: 12),
-              TextFormField(
-                controller: _courseController,
-                decoration: InputDecoration(
-                  labelText: 'Course',
-                  border: OutlineInputBorder(),
-                  fillColor: Colors.white,
-                  filled: true,
-                ),
+              Row(
+                children: [
+                  DropdownButton<String>(
+                    value: _selectedCountryCode,
+                    onChanged: (String? value) {
+                      setState(() {
+                        _selectedCountryCode = value;
+                      });
+                    },
+                    items: <String>['+60', '+1', '+91', '+44'] // Add more as needed
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: TextFormField(
+                      controller: _phoneNumberController,
+                      decoration: InputDecoration(
+                        labelText: 'Phone Number',
+                        border: OutlineInputBorder(),
+                        fillColor: Colors.white,
+                        filled: true,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 12),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      readOnly: true,
+                      controller: TextEditingController(
+                        text: _selectedDateOfBirth == null
+                            ? ''
+                            : '${_selectedDateOfBirth!.day}/${_selectedDateOfBirth!.month}/${_selectedDateOfBirth!.year}',
+                      ),
+                      decoration: InputDecoration(
+                        labelText: 'Date of Birth',
+                        border: OutlineInputBorder(),
+                        fillColor: Colors.white,
+                        filled: true,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  ElevatedButton(
+                    onPressed: () => _selectDate(context),
+                    child: Text('Select Date'),
+                  ),
+                ],
               ),
               SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () => signUp(context),
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF5C4448),
+                  backgroundColor: Color(0xFF5C4448),
                   padding: EdgeInsets.symmetric(vertical: 16),
                 ),
                 child: Text(

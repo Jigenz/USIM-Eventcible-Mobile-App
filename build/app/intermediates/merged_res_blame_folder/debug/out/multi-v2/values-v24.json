@@ -1,16 +1,33 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Azzam Syafrizal\\Desktop\\flutter\\test_2\\Campus_Pulse_COS\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
+            "outputFile": "com.example.flutter_complete_guide.app-mergeDebugResources-52:/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Azzam Syafrizal\\.gradle\\caches\\transforms-3\\440893149692fdf13193978dd1019bae\\transformed\\media-1.1.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\Azzam Syafrizal\\.gradle\\caches\\transforms-3\\295426f2d8666d7afcd75adc1c0778ab\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,212",
+                        "endColumns": "156,134",
+                        "endOffsets": "207,342"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Azzam Syafrizal\\.gradle\\caches\\transforms-3\\4892a1ca0e7add7cc4259a184faaeac3\\transformed\\media-1.1.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
                         "startOffsets": "55,121,182,248",
                         "endColumns": "65,60,65,66",
                         "endOffsets": "116,177,243,310"
+                    },
+                    "to": {
+                        "startLines": "4,5,6,7",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "347,413,474,540",
+                        "endColumns": "65,60,65,66",
+                        "endOffsets": "408,469,535,602"
                     }
                 }
             ]

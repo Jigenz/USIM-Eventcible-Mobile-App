@@ -16,6 +16,7 @@ import 'Pages/CreateEvents.dart';
 import 'Pages/eventManagements.dart';
 import 'Pages/searchEvents.dart';
 import 'Pages/upcomingEvents.dart';
+import 'Pages/selectionpage.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'high_importance_channel', // id
@@ -117,7 +118,8 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       routes: {
         '/': (context) => MyHomePage(),
-        '/auth': (context) => AuthenticationPage(),
+        '/selection': (context) => SelectionPage(),
+        '/auth': (context) => AuthenticationPage(role: '',),
         '/home': (context) => HomePage(),
         '/competition': (context) => upcomingEvents(),
         '/viewAllEvents': (context) => viewAllEvents(),
@@ -127,7 +129,7 @@ class _MyAppState extends State<MyApp> {
         '/searchEvents': (context) => searchEventsPage(),
         '/eventManagements': (context) => eventManagementsPage(),
         '/feedback': (context) => feedbackPage(),
-        '/signup': (ctx) => SignUpPage(),
+        '/signup': (ctx) => SignUpPage(role: '',),
         
       },
     );
@@ -143,7 +145,8 @@ class MyHomePage extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => AuthOption(),
-        '/auth': (context) => AuthenticationPage(),
+        '/selection': (context) => SelectionPage(),
+        '/auth': (context) => AuthenticationPage(role: '',),
         '/home': (context) => HomePage(),
         '/competition': (context) => upcomingEvents(),
         '/viewAllEvents': (context) => viewAllEvents(),
@@ -153,7 +156,7 @@ class MyHomePage extends StatelessWidget {
         '/searchEvents': (context) => searchEventsPage(),
         '/eventManagements': (context) => eventManagementsPage(),
         '/feedback': (context) => feedbackPage(),
-        '/signup': (ctx) => SignUpPage(),
+        '/signup': (ctx) => SignUpPage(role: '',),
       },
     );
   }

@@ -4,7 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class AuthenticationPage extends StatefulWidget {
-  const AuthenticationPage({Key? key}) : super(key: key);
+  final String role;
+
+  const AuthenticationPage({Key? key, required this.role}) : super(key: key);
 
   @override
   _AuthenticationPageState createState() => _AuthenticationPageState();
@@ -32,12 +34,12 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
           errorMessage = 'Wrong password provided for that USIM EMAIL.';
         }
       }
-      final snackBar = SnackBar(content: Text(errorMessage),
-      duration: Duration(seconds: 1),
+      final snackBar = SnackBar(
+        content: Text(errorMessage),
+        duration: Duration(seconds: 1),
       );
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      
     }
   }
 
@@ -67,7 +69,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                     style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF5C4448), // Stylish text color
+                      color: Color(0xFF5C4448),
                     ),
                   ),
                   SizedBox(height: 16.0),
@@ -77,7 +79,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                       labelText: 'USIM EMAIL',
                       border: OutlineInputBorder(),
                       labelStyle: TextStyle(
-                        color: Color(0xFF5C4448), // Stylish label color
+                        color: Color(0xFF5C4448),
                       ),
                     ),
                   ),
@@ -88,7 +90,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                       labelText: 'Password',
                       border: OutlineInputBorder(),
                       labelStyle: TextStyle(
-                        color: Color(0xFF5C4448), // Stylish label color
+                        color: Color(0xFF5C4448),
                       ),
                     ),
                     obscureText: true,
@@ -114,7 +116,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                           signIn();
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xFFCBB399), // Stylish button color
+                          backgroundColor: Color(0xFFCBB399),
                         ),
                         child: _isLoading
                             ? SizedBox(
@@ -144,14 +146,31 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
 
   @override
   Widget build(BuildContext context) {
+    String title = 'Sign In';
+    String signInLabel = 'Sign in with USIM EMAIL';
+    if (widget.role == 'Campus Association') {
+      title = 'Campus Association Sign In';
+      signInLabel = 'Sign in for Association';
+    } else if (widget.role == 'Student') {
+      title = 'Student Sign In';
+      signInLabel = 'Sign in for Student';
+    } else if (widget.role == 'OtherRole') {
+      // Customize for other roles
+    }
+
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Color(0xFFCBB399)),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         title: Column(
           children: [
-            SizedBox(height: 10), // Added SizedBox for spacing
+            SizedBox(height: 10),
             Text(
               'Welcome To',
               textAlign: TextAlign.center,
@@ -162,10 +181,10 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
               ),
             ),
             Text(
-              'Campus Pulse!',
+              'USIM EVENTCIBLE!',
               textAlign: TextAlign.center,
-              style:  GoogleFonts.bebasNeue(
-                fontSize: 30,
+              style: GoogleFonts.bebasNeue(
+                fontSize: 28,
                 color: Color(0xFFCBB399),
                 fontWeight: FontWeight.w500,
               ),
@@ -175,6 +194,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
         centerTitle: true,
         elevation: 0,
       ),
+
       backgroundColor: Color(0xFF5C4448),
       body: SafeArea(
         child: GestureDetector(
@@ -218,7 +238,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                   height: 50,
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFFCBB399),
+                      backgroundColor: Color(0xFFCBB399),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -240,18 +260,18 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                             ),
                           )
                         : Text(
-                            'Sign in with USIM EMAIL',
+                            signInLabel,
                             style: TextStyle(
-                              color: Color(0xFF5C4448), // Adjusted font color here
+                              color: Color(0xFF5C4448),
                             ),
                           ),
-                    icon: Icon(Icons.login, color: Color(0xFF5C4448)),
+                                              icon: Icon(Icons.login, color: Color(0xFF5C4448)),
                   ),
                 ),
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed("/signup");
+                  Navigator.of(context).pushNamed("/signup", arguments: widget.role);
                 },
                 child: Text(
                   'Sign up',
@@ -269,3 +289,4 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
     );
   }
 }
+

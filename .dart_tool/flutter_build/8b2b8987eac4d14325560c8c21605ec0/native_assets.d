@@ -1,0 +1,1 @@
+ C:\\Users\\Azzam\ Syafrizal\\Desktop\\Github\ project\\test_4\\Usim_Eventcible_UE\\.dart_tool\\flutter_build\\8b2b8987eac4d14325560c8c21605ec0\\native_assets.yaml: 

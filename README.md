@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Project Title
 
@@ -31,3 +32,7 @@ For support, email vipul0592bhatia@gmail.com .
 ![App Screenshot](https://github.com/vipul-bhatia/Event_Genie/blob/master/E1.jpeg)
 ![App Screenshot](https://github.com/vipul-bhatia/Event_Genie/blob/master/E2.jpeg)
 
+=======
+# USIM-Eventcible-Mobile-App
+A mobile application for event navigation and tracking, tailored to enhance student engagement at Universiti Sains Islam Malaysia (USIM).
+>>>>>>> db442054eb04b8b7ae91f085f4918c5af422e603

@@ -120,7 +120,7 @@ class _feedbackPageState extends State<feedbackPage> {
                 height: 50.0,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.indigo,
+                    backgroundColor: Colors.indigo,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

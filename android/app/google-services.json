@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "748494867884",
+    "firebase_url": "https://campus-pulse-default-rtdb.firebaseio.com",
     "project_id": "campus-pulse",
     "storage_bucket": "campus-pulse.appspot.com"
   },
@@ -29,6 +30,13 @@
             {
               "client_id": "748494867884-0mjsfd7kjlnno0um80odfrqt5ehv32k4.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "748494867884-b72de8fdea78mho15dh3ourvbn40ha3t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterCompleteGuide"
+              }
             }
           ]
         }
