@@ -1,2 +1,6 @@
 *.dart linguist-language=Dart
 Makefile linguist-language=plaintext
+*.cpp linguist-language=plaintext
+*.cmake linguist-language=plaintext
+*.java linguist-language=plaintext
+*.swift linguist-language=plaintext
